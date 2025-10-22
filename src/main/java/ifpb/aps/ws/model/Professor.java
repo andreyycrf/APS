@@ -1,10 +1,13 @@
-
 package ifpb.aps.ws.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Professor {
@@ -13,9 +16,20 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String matricula;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="professor_seq")
+    @SequenceGenerator(name="professor_seq", sequenceName="professor_seq", allocationSize=1)
+    private Long matricula;
+
+     @Column
     private String nome;
+
+     @Column
     private String area;
+
+    @ManyToMany(mappedBy = "professores")
+    @JsonIgnore
+    private List<Aluno> alunos;
 
     public Professor() {}
 

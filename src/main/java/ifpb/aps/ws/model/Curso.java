@@ -1,33 +1,32 @@
 package ifpb.aps.ws.model;
 
+import java.util.Objects;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Curso")
 public class Curso {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "curso_seq")
+    @SequenceGenerator(name = "curso_seq", sequenceName = "curso_seq", allocationSize = 1)
+    private Long codigo;
 
+    @Column
     private String nome;
-    private int cargaHoraria;
-    private String curso;
 
-    @ManyToOne
-    @JoinColumn(name = "professor_id")
-    private Professor professorResponsavel;
+    @Column
+    private String area;
 
-    public Curso() {}
-
-    public Curso(String nome, int cargaHoraria, String curso, Professor professorResponsavel) {
-        this.nome = nome;
-        this.cargaHoraria = cargaHoraria;
-        this.curso = curso;
-        this.professorResponsavel = professorResponsavel;
+    @OneToMany(mappedBy = "curso")
+    private List<Matricula> alunos;
+    
+    public Long getCodigo() {
+        return codigo;
     }
 
-    public Long getId() {
-        return id;
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -38,28 +37,12 @@ public class Curso {
         this.nome = nome;
     }
 
-    public int getCargaHoraria() {
-        return cargaHoraria;
+    public String getArea() {
+        return area;
     }
 
-    public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
-
-    public Professor getProfessorResponsavel() {
-        return professorResponsavel;
-    }
-
-    public void setProfessorResponsavel(Professor professorResponsavel) {
-        this.professorResponsavel = professorResponsavel;
+    public void setArea(String area) {
+        this.area = area;
     }
 }
 
