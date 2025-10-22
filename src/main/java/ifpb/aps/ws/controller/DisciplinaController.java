@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import ifpb.aps.ws.model.Disciplina;
+import ifpb.aps.ws.model.Curso;
 import ifpb.aps.ws.service.DisciplinaService;
 
 @RestController
@@ -16,17 +16,17 @@ public class DisciplinaController {
     private DisciplinaService disciplinaService;
 
     @GetMapping
-    public List<Disciplina> listarDisciplinas() {
+    public List<Curso> listarDisciplinas() {
         return disciplinaService.listarDisciplinas();
     }
 
     @PostMapping
-    public Disciplina cadastrarDisciplina(@RequestBody Disciplina disciplina) {
+    public Curso cadastrarDisciplina(@RequestBody Curso disciplina) {
         return disciplinaService.cadastrarDisciplina(disciplina);
     }
 
     @PutMapping
-    public Disciplina atualizarDisciplina(@RequestBody Disciplina disciplina) {
+    public Curso atualizarDisciplina(@RequestBody Curso disciplina) {
         return disciplinaService.atualizarDisciplina(disciplina);
     }
 

@@ -3,7 +3,7 @@ package ifpb.aps.ws.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Disciplina {
+public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,14 +13,13 @@ public class Disciplina {
     private int cargaHoraria;
     private String curso;
 
-    // Relacionamento: muitas disciplinas podem ter o mesmo professor
     @ManyToOne
     @JoinColumn(name = "professor_id")
     private Professor professorResponsavel;
 
-    public Disciplina() {}
+    public Curso() {}
 
-    public Disciplina(String nome, int cargaHoraria, String curso, Professor professorResponsavel) {
+    public Curso(String nome, int cargaHoraria, String curso, Professor professorResponsavel) {
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
         this.curso = curso;
