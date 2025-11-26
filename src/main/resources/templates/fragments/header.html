@@ -1,22 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
 <body>
-	<header th:fragment="cabecalho">
-		<nav
-			class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top ">
-			<div class="container-fluid ">
-				<div class="navbar-header ">
-					<button type="button"
-						class="btn btn-dark navbar-toggle pull-left ">
-						<i class="oi oi-menu "></i>
-					</button>
-					<a class="navbar-brand  navbar-toggle pull-left" href="# ">SUAPdoSertaoWEB - Cadastro</a>
-				</div>
-			</div>
-		</nav>
-	</header>
+<nav>
+    <span sec:authorize="isAuthenticated()">Olá, <span sec:authentication="name"></span></span>
+    <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+        <button type="submit">Sair</button>
+    </form>
+</nav>
 </body>
 </html>
